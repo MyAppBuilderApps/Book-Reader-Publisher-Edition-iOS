@@ -1,0 +1,287 @@
+img{
+    box-shadow:none;
+    width: 100%;
+}
+
+video{
+    width: 100%;
+}
+
+audio{
+    width: 100%;
+}
+
+.ui-btn-left{
+	box-shadow:none;
+}
+
+ul li img{
+  width:100%;
+}
+/*.img1{
+    top:7.3%;
+    left:4%;
+    max-width: 25% !important;
+    width: 25% !important;
+    padding: 5px;
+
+}*/
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+    min-height: 68px !important;
+}
+
+.ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow{
+    padding-right: 10% !important;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+    padding-left: 25% !important;
+}
+textarea{
+  min-height: 4em;
+	max-height: 4em;
+}
+
+p{
+    text-transform:none;
+    /*font-size: 16px;*/
+}
+
+div,ul{
+    /*font-family: Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    font-stretch: ultra-expanded;*/
+    text-shadow:none;
+    box-shadow:none;
+}
+
+a,h2,h3,h6,h4{
+  text-shadow:none; 
+
+}
+
+
+.divback 
+{
+
+  position: relative;
+  width: 85%;
+  height: auto;
+  padding: 21px;
+  background: #e4c3a5;
+  /*background-image:url(../img/bg.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;*/
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+
+.divback:after 
+{
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  border-style: solid;
+  border-width: 8px 5px 8px 0;
+  border-color: transparent #e4c3a5;
+  /*border-color: transparent #f1ba63;*/
+  display: block;
+  width: 0;
+  z-index: 1;
+  overflow-y:scroll;
+}
+
+#letterbox{
+  position: relative;
+  width: 85%;
+  height: auto;
+  padding: 21px;
+  background: #e4c3a5;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+#letterbox:after{
+  content: "";
+  position: absolute;
+  right: 10px;
+  left: -5px;
+  border-style: solid;
+  border-width: 8px 5px 8px 0;
+  border-color: transparent #e4c3a5;
+  display: block;
+  width: 0;
+  z-index: 1;
+  overflow-y:scroll;
+}
+
+#addButton/*,#appwallloginbtn*/ {
+  background-image: url(../img/button2.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border-color: transparent;
+  color:white;
+}
+#addButton:active {
+  background-image: url(../img/button1.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  position:relative;
+  color:black;
+  /*top:1px;*/
+}
+/*#appwallloginbtn:active {
+  background-image: url(../img/button1.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  position:relative;
+  color:black;
+}*/
+
+.imageactive:active{
+  position:relative;
+  top:1px;
+}
+
+.img1:active{
+  position:relative;
+  top:5px;
+}
+
+.appendreplydata{
+  width: 100%;
+ }
+
+.deleteMgs:active{
+  position:relative;
+  top:1px;
+}
+.replyMgs:active{
+  position:relative;
+  top:1px;
+}
+.ElementdeleteMgs:active{
+  position:relative;
+  top:1px;
+}
+.ElementreplyMgs:active{
+  position:relative;
+  top:1px;
+}
+
+.ButtondeleteMgs:active{
+  position:relative;
+  top:1px;
+}
+.ButtonreplyMgs:active{
+  position:relative;
+  top:1px;
+}
+
+.textReply:active{
+  background-color: green;
+  font-color:black;
+}
+#textPostMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#textPostMgs:active{
+  background-color: green;
+}
+
+#textReplyMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#textReplyMgs:active{
+  background-color: green;
+}
+#ElementtextPostMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#ElementtextPostMgs:active{
+  background-color: green;
+}
+
+#ElementtextReplyMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#ElementtextReplyMgs:active{
+  background-color: green;
+}
+
+
+#ButtontextPostMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#ButtontextPostMgs:active{
+  background-color: green;
+}
+
+#ButtontextReplyMgs{
+  
+  background-color:#7b71db; 
+  box-shadow:none; 
+  text-shadow:none;
+}
+
+#ButtontextReplyMgs:active{
+  background-color: green;
+}
+
+
+#fontstylelistview{
+    max-height: 165px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#whitebgcolor:hover{
+  background-image: url(../img/whiteglow.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border-color: transparent;
+  color:white;
+}
+
+#sepiabgcolor:hover{
+  background-image: url(../img/sepiaglow.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border-color: transparent;
+  color:white;
+}
+
+#blackbgcolor:hover{
+  background-image: url(../img/blackglow.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  border-color: transparent;
+  color:white;
+}
+
+
+
+

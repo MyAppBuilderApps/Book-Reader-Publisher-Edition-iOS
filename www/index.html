@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+        <!--<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.0-rc.1.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+    </head>
+
+    <body>
+
+        <!-- - - - - - - - - - - - - - - - - - - - -  BookShelf - - - - - - - - - - - - - - - -->
+
+        <div data-role="page" id="bookshelf" style="background-image: url('img/bg.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-theme="c" data-tap-toggle="false" style="border:none;" data-position="fixed"> 
+              <a href="javascript:listviewchangeFun();" class="ui-btn-left" style="top:5%;background:none;border:none"><img class="imageactive" src="img/menu.png" ></a>
+              <h2 style="top:5%; text-align: center;">Books Shelf</h2>
+              <a href="#popupLogin" data-rel="popup" class="ui-btn-right" data-position-to="window" data-transition="flip" style="top:5%; background:none; border:none; shadow:none "><img class="imageactive" src="img/add.png" ></a>
+              
+            </div>
+           <!-- <div id="bookshelfListview" data-theme="b" data-inset="true" style="background-image: url('img/BookShelfCell.png');background-size: 100% auto;">
+            </div>-->
+            <ul data-role="listview" id="bookshelfListview" data-theme="b" data-inset="true" style="background-image: url('img/BookShelfCell.png');background-size: 100% auto;">
+            </ul>
+            <img id="hideImage" src="img/BookShelfCell_bg.png" width="100%" height="auto" />
+            
+            <div data-role="popup" id="popupLogin" class="ui-corner-all" style="background-image: url('img/bg.png');background-size: 100% 100%;">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                <div style="padding:16px 20px;">
+                    <h3 style="text-align:center">Add Your Book</h3>
+                    <div style="padding:18px 20px;">
+                        <textarea placeholder=" Enter Your AppKey" name="appkey" id="appkeyvalue" ></textarea>
+                        <a data-role="button" id="addButton" onclick="javascript:addAppKeyvalue();" style="text-shadow:none;">Add Book</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--<div data-role="page" id="splashScreen" style="background-image: url('img/bg.png');background-size: 100% 100%; margin-top: 0px; ">
+        </div>   -->
+        <!--<div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+              <a href="" id="ContentPageback" class="ui-btn-left"  style="top:10%;left:0%; background:none;border:none;shadow:none"><img src="img/menu.png" class="imageactive"></a>
+              <a href="javascript:bookMarkFun();" class="ui-btn-left" style="top:10%; left:15%; background:none;border:none;shadow:none"><img src="img/bookmark.png" class="imageactive"/></a>
+              <a href="#LetterEffect" data-rel="popup" class="ui-btn-right" style="top:10%; right:17.5%; background:none;border:none;shadow:none"><img src="img/font.png" class="imageactive"/></a>
+              <a href="javascript:elementAppwallgo();" class="ui-btn-right"  style="top:10%; right:5%; background:none;border:none;shadow:none"><img src="img/coments.png" class="imageactive"></a>
+              <h4><font size="1" id="appTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h4>
+        Chapter Page -->
+        
+        <div data-role="page" id="chapterPage" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+               <a href="" id="chapterPageback" class="ui-btn-left" style="top:8%; background:none; border:none"><img src="img/back.png" class="imageactive" ></a>
+               
+               <a href="javascript:bookMarkCallFun();" class="ui-btn-left" style="top:10%; left:15%; background:none;border:none"><img class="imageactive" src="img/bookmark.png" ></a>
+               <a href="#LetterEffect1" data-rel="popup" class="ui-btn-right" style="top:10%; right:17.5%; background:none;border:none;shadow:none"><img src="img/font.png" class="imageactive"/></a>
+               <a href="javascript:appwallgoFun();" class="ui-btn-right" style="top:10%;right:5%;background:none;border:none;">
+                    <img class="imageactive" src="img/coments.png" width="21" height="auto"/>
+                </a>
+                <h4><font size="1" class="chapterTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h4>
+            </div>
+            <div data-role="content">
+                <div class="backgroundcolor" style="width:100%">
+                    <ul data-role="listview" id="contentListview" data-theme="b" data-inset="true">
+                    </ul>
+                </div>
+            </div>
+            
+            <div data-role="popup" id="LetterEffect1" data-overlay-theme="a" data-theme="d" style=" background-image: url('img/letterbg.png');background-size: 100% 100%;" class="ui-corner-all">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                
+                <div data-role="header" data-theme="d" class="ui-corner-top">
+                    <h1><font size="2" style=" white-space:normal; word-wrap:break-word;">Letter Effects</font></h1>
+                </div>
+               <!-- <div role="main" class="ui-corner-bottom ui-content"> -->
+                    
+                        <div class="ui-grid-a" style="width:100%">
+                            <div class="ui-block-a" style="width:2%">
+                                <label for="slider-fill1"></label>
+                            </div>
+                            <div class="ui-block-b" style="width:98%">
+                                <input type="range" name="slider-fill" id="slider-fill1" value="50" min="0" max="100" data-theme="e" data-highlight="true">
+                            </div>
+                        </div>
+                    
+
+                    <div class="ui-grid-a" style="width:100%">
+                        <div class="ui-block-a" style="width:50%">
+                            <a href="javascript:smallletterFun();" data-role="button" data-theme="d"><font size="1" style="">A-</font></a>
+                        </div>
+                        <div class="ui-block-b" style="width:50%">
+                            <a href="javascript:capitalltterFun();" data-role="button" data-transition="flow" data-theme="d"><font size="3" style="">A+</font></a>
+                        </div>
+                    </div>
+
+                    <!--<div data-role="collapsible" class="custom-collapsible">
+                        <h4>Font</h4>-->
+                    <h4>Font Style</h4>
+                    <div id="fontstylelistview">    
+                        <ul data-role="listview" id="sortedList" >
+                            <li><a id="Athelas" class="fontStyle" href=""><font face="Athelas">Athelas</font></a></li>
+                            <li><a id="Charter" class="fontStyle" href=""><font face="Charter">Charter</font></a></li>
+                            <li><a id="Georgia" class="fontStyle" href=""><font face="Georgia">Georgia</font></a></li>
+                            <li><a id="Iowan" class="fontStyle" href=""><font face="Iowan">Iowan</font></a></li>
+                            <li><a id="Palatino" class="fontStyle" href=""><font face="Palatino">Palatino</font></a></li>
+                            <li><a id="Seravek" class="fontStyle" href=""><font face="Seravek">Seravek</font></a></li>
+                            <li><a id="Times New Roman" class="fontStyle" href=""><font face="Times New Roman">Times New Roman</font></a></li>
+                            <li><a id="Helvetica" class="fontStyle" href=""><font face="Helvetica">Helvetica</font></a></li>
+                            <li><a id="Arial" class="fontStyle" href=""><font face="Arial">Arial</font></a></li>
+                            <li><a id="sans-serif" class="fontStyle" href=""><font face="sans-serif">sans-serif</font></a></li>
+                        </ul>
+                    </div>
+
+                    
+                    <div align="center">    
+                        <div class="ui-grid-b" style="width:100%">
+
+                            <div class="ui-block-a" style="width:33%">
+                                <div style="width:50%;left:5%;">
+                                    <img id="whitebgcolor" class="fontbgcolor" src="img/white.png" />
+                                    <font size="1">White</font>
+                                </div><br/>
+                            </div>
+
+                            <div class="ui-block-b" style="width:33%">
+                                <div style="width:50%;center:5%;">
+                                    <img id="sepiabgcolor" class="fontbgcolor" src="img/sepia.png" />
+                                    <font size="1">Sepia</font>
+                                </div><br/>
+                            </div>
+
+                            <div class="ui-block-b" style="width:33%">
+                                <div style="width:50%;right:5%;">
+                                    <img id="blackbgcolor" class="fontbgcolor" src="img/black.png" />
+                                    <font size="1">Night</font>
+                                </div><br/>
+                            </div>
+
+                        </div> 
+                    </div>
+            </div>
+
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+               <h3><font size="2" class="chapterTitle" style="top:2%; white-space:normal; word-wrap:break-word;"></font></h3>
+               
+               
+            </div>
+        </div>
+
+        <!-- content Page -->
+
+        <div data-role="page" id="ContentPage" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+              <a href="" id="ContentPageback" class="ui-btn-left"  style="top:10%;left:0%; background:none;border:none;shadow:none"><img src="img/menu.png" class="imageactive"></a>
+              <a href="javascript:bookMarkFun();" class="ui-btn-left" style="top:10%; left:15%; background:none;border:none;shadow:none"><img src="img/bookmark.png" class="imageactive"/></a>
+              <a href="#LetterEffect" data-rel="popup" class="ui-btn-right" style="top:10%; right:17.5%; background:none;border:none;shadow:none"><img src="img/font.png" class="imageactive"/></a>
+              <a href="javascript:elementAppwallgo();" class="ui-btn-right"  style="top:10%; right:5%; background:none;border:none;shadow:none"><img src="img/coments.png" class="imageactive"></a>
+              <h4><font size="1" id="appTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h4>
+            </div>
+
+            <div data-role="content" style="top:2%;">
+               <div class="backgroundcolor" style="width:100%">
+                <div > 
+                    <h3 id ="buttonheading"></h3>
+                    <h3 style="white-space:normal; word-wrap:break-word; " id="ContentPageTitle"></h3>
+                    <p align="justify" style="white-space:normal; word-wrap:break-word;" id="ContentPageText"></p>
+                </div>          
+               </div>
+            </div>
+
+            <div data-role="popup" id="LetterEffect" data-overlay-theme="a" data-theme="d" style=" background-image: url('img/letterbg.png');background-size: 100% 100%;" class="ui-corner-all">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                
+                <div data-role="header" data-theme="d" class="ui-corner-top">
+                    <h1><font size="2" style=" white-space:normal; word-wrap:break-word;">Letter Effects</font></h1>
+                </div>
+               <!-- <div role="main" class="ui-corner-bottom ui-content"> -->
+                    
+                        <div class="ui-grid-a" style="width:100%">
+                            <div class="ui-block-a" style="width:2%">
+                                <label for="slider-fill"></label>
+                            </div>
+                            <div class="ui-block-b" style="width:98%">
+                                <input type="range" name="slider-fill" id="slider-fill" value="50" min="0" max="100" data-theme="e" data-highlight="true">
+                            </div>
+                        </div>
+                    
+
+                    <div class="ui-grid-a" style="width:100%">
+                        <div class="ui-block-a" style="width:50%">
+                            <a href="javascript:smallletterFun();" data-role="button" data-theme="d"><font size="1" style="">A-</font></a>
+                        </div>
+                        <div class="ui-block-b" style="width:50%">
+                            <a href="javascript:capitalltterFun();" data-role="button" data-transition="flow" data-theme="d"><font size="3" style="">A+</font></a>
+                        </div>
+                    </div>
+
+                    <!--<div data-role="collapsible" class="custom-collapsible">
+                        <h4>Font</h4>-->
+                    <h4>Font Style</h4>
+                    <div id="fontstylelistview">    
+                        <ul data-role="listview" id="sortedList" >
+                            <li><a id="Athelas" class="fontStyle" href=""><font face="Athelas">Athelas</font></a></li>
+                            <li><a id="Charter" class="fontStyle" href=""><font face="Charter">Charter</font></a></li>
+                            <li><a id="Georgia" class="fontStyle" href=""><font face="Georgia">Georgia</font></a></li>
+                            <li><a id="Iowan" class="fontStyle" href=""><font face="Iowan">Iowan</font></a></li>
+                            <li><a id="Palatino" class="fontStyle" href=""><font face="Palatino">Palatino</font></a></li>
+                            <li><a id="Seravek" class="fontStyle" href=""><font face="Seravek">Seravek</font></a></li>
+                            <li><a id="Times New Roman" class="fontStyle" href=""><font face="Times New Roman">Times New Roman</font></a></li>
+                            <li><a id="Helvetica" class="fontStyle" href=""><font face="Helvetica">Helvetica</font></a></li>
+                            <li><a id="Arial" class="fontStyle" href=""><font face="Arial">Arial</font></a></li>
+                            <li><a id="sans-serif" class="fontStyle" href=""><font face="sans-serif">sans-serif</font></a></li>
+                        </ul>
+                    </div>
+
+                    
+                    <div align="center">    
+                        <div class="ui-grid-b" style="width:100%">
+
+                            <div class="ui-block-a" style="width:33%">
+                                <div style="width:50%;left:5%;">
+                                    <img id="whitebgcolor" class="fontbgcolor" src="img/white.png" />
+                                    <font size="1">White</font>
+                                </div><br/>
+                            </div>
+
+                            <div class="ui-block-b" style="width:33%">
+                                <div style="width:50%;center:5%;">
+                                    <img id="sepiabgcolor" class="fontbgcolor" src="img/sepia.png" />
+                                    <font size="1">Sepia</font>
+                                </div><br/>
+                            </div>
+
+                            <div class="ui-block-b" style="width:33%">
+                                <div style="width:50%;right:5%;">
+                                    <img id="blackbgcolor" class="fontbgcolor" src="img/black.png" />
+                                    <font size="1">Night</font>
+                                </div><br/>
+                            </div>
+
+                        </div> 
+                    </div>
+            </div>
+
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+               <a id="arrowLeft" href="" class="ui-btn-left" style="bottom: 5%;left:2%;background:none;border:none;">
+                    <img class="imageactive" src="img/left.png" />
+                </a>
+                <h3 id="pageNo" align="center"></h3>
+
+                
+
+                <a id="arrowRight" href="" class="ui-btn-right" style="bottom: 5%;right:5%;background:none;border:none;">
+                    <img class="imageactive" src="img/right.png" />
+                </a>
+            </div>
+        </div>
+
+
+        <!-- AppWall -->
+
+        <div data-role="page" id="appwall" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+              <a href="javascript:appwallback();" class="ui-btn-left"  style="top:5%;background:none;border:none;shadow:none"><img src="img/back.png" class="imageactive"></a>
+              <h3><font size="2" id="appwallTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+              <a href="javascript:appwallLogout();" class="logoutBtn" class="ui-btn-right"  style="top:5%;background:none;border:none;shadow:none"><img src="img/logout.png" class="imageactive"></a>
+            </div>
+            
+            <div data-role="content">
+                <div class="ui-grid-a" >
+                    <div class="ui-block-a" style="width:80%;">
+                        <input id="postmessage" type="text" data-mini="true" data-inline="true" placeholder="Enter Your Comments...." value="" >
+                    </div>
+                     
+                    <div class="ui-block-b" style="width:20%;">
+                        <button id="textPostMgs" class="textPostMgs" onclick="javascript:postmessageFun();" data-mini="true" data-inline="true"><font color="white" >Post</font></button>
+                   </div>
+                </div>
+                <div id="appwallListview" align="center">
+                </div>
+            </div>  
+
+            
+            
+
+            <div data-role="popup" id="appwallLoginPage" class="ui-corner-all" style="background-color:#969696; background-size: 100% 100%;">
+                <div data-role="header" data-theme="e" style="text-align:center; white-space:normal; word-wrap:nowrap;">
+                     <h3><font size="2" class="appwalllogtitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+                </div>
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                <div data-role="content">
+                    <h3 align="center" style="color:white">LOGIN</h3>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" align="left" style="width:50%;">
+                           <a data-role="button" onclick="javascript:fblogin(1);" style="text-shadow:none;"><img src="img/fb.png" style="width:15px; height:15px"/>  <font size="1">FACEBOOK</font></a>
+                        </div> 
+                        <div class="ui-block-b" align="right" style="width:50%;">
+                            <a data-role="button" onclick="javascript:twitterlogin(1);" style="text-shadow:none;"><img src="img/twitter.png" style="width:15px; height:15px" /><font size="1"> TWITTER</font></a>
+                        </div> 
+                    </div>    
+                    <input type = "text" name = "login" id="appwallLogin" style="text-shadow:none; background-image:url('img/txt_user.png'); background-size: 100% 100%;" placeholder="Login Id" />
+                                
+                    <input type = "password" name = "password" id="appwallPassword" style="text-shadow:none; background-image:url('img/txt_pass.png'); background-size: 100% 100%;" placeholder="Password"/>
+
+                    <a data-role="button" id="appwallloginbtn" onclick="javascript:appwallLoginFun();" style="text-shadow:none;">LOGIN</a>
+
+                    <img src="img/register.png" width="100%"/>
+
+
+                     <a data-role="button" id="appwallregisterbtn" onclick="javascript:appwallRegFun(1);" style="text-shadow:none;">REGISTER</a>
+                           
+                </div>
+            </div>
+
+            <div data-role="popup" id="appwallRegisterPage" class="ui-corner-all" style="background-color:#969696; background-size: 100% 100%;">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                
+                <div data-role="header" data-theme="e" style="text-align:center; white-space:normal; word-wrap:nowrap;">
+                     <h3><font size="2" class="appwalllogtitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+                </div>
+                <div data-role="content">
+                    <h3 align="center" style="color:white">REGISTER</h3>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" align="left" style="width:45%; margin-right:5%;">
+                            <input type = "text" id="appwallRegFnam" style="text-shadow:none;" placeholder="First Name" />
+                        </div> 
+                        <div class="ui-block-b" align="right" style="width:45%; margin-left:5%;">
+                             <input type = "text" id="appwallRegLnam" style="text-shadow:none;" placeholder="Last Name" />
+                        </div> 
+                    </div>    
+                                    
+                        <input type = "text"  id="appwallRegid" style="text-shadow:none; background-image:url('img/txt_user.png'); background-size: 100% 100%;" placeholder="Login Id" />
+                                    
+                        <input type = "password"  id="appwallRegPassword" style="text-shadow:none; background-image:url('img/txt_pass.png'); background-size: 100% 100%;" placeholder="Password"/>
+
+                        <input type = "number" id="appwallRegPhone" style="text-shadow:none; background-image:url('img/txt_phone.png'); background-size: 100% 100%;" placeholder="Phone"/>
+
+                        <input type = "email"  id="appwallRegEmail" style="text-shadow:none; background-image:url('img/txt_mail.png'); background-size: 100% 100%;" placeholder="Email"/>
+
+                        <a data-role="button" id="appwallregbtn" onclick="javascript:regesiterPageFtn(1);" style="text-shadow:none;">REGISTER</a>
+                </div>
+                
+            </div>
+
+
+
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+                <h3>Appwall</h3>
+            </div>
+        </div>
+
+        <div data-role="page" id="ElementAppwall" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+              <a href="javascript:elementAppwallBack();"  class="ui-btn-left"  style="top:5%;background:none;border:none;shadow:none"><img src="img/back.png" class="imageactive"></a>
+              <h3><font size="2" id="ElementAppwallTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+              <a href="javascript:appwallLogout();" class="logoutBtn" class="ui-btn-right"  style="top:5%;background:none;border:none;shadow:none"><img src="img/logout.png" class="imageactive"></a>
+            </div>
+            
+            <div data-role="content">
+                <div class="ui-grid-a" style="width:100%;">
+                    <div class="ui-block-a" style="width:80%;">
+                        <input id="Elementpostmessage" type="text" data-mini="true" data-inline="true" placeholder="Enter Your Comments...." value="" >
+                    </div>
+                    <div class="ui-block-b" style="width:20%;">
+                        <button id="ElementtextPostMgs" class="textPostMgs" onclick="javascript:ElementpostmessageFun();" data-mini="true" data-inline="true"><font color="white" >Post</font></button>
+                   </div>
+                </div>
+                <div id="ElementappwallListview" align="center">
+                </div>
+            </div>    
+
+            
+
+            <div data-role="popup" id="ElementappwallLoginPage" class="ui-corner-all" style="background-color:#969696; background-size: 100% 100%;">
+                <div data-role="header" data-theme="e" style="text-align:center; white-space:normal; word-wrap:nowrap;">
+                     <h3><font size="2" class="Elementappwalllogtitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+                </div>
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                <div data-role="content">
+                    <h3 align="center" style="color:white">LOGIN</h3>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" align="left" style="width:50%;">
+                           <a data-role="button" id="" onclick="fblogin(2);" style="text-shadow:none;"><img src="img/fb.png" style="width:15px; height:15px"/>  <font size="1">FACEBOOK</font></a>
+                        </div> 
+                        <div class="ui-block-b" align="right" style="width:50%;">
+                            <a data-role="button" onclick="javascript:twitterlogin(2);" style="text-shadow:none;"><img src="img/twitter.png" style="width:15px; height:15px" /><font size="1"> TWITTER</font></a>
+                        </div> 
+                    </div>    
+                    <input type = "text" name = "login" id="ElementappwallLogin" style="text-shadow:none; background-image:url('img/txt_user.png'); background-size: 100% 100%;" placeholder="Login Id" />
+                                
+                    <input type = "password" name = "password" id="ElementappwallPassword" style="text-shadow:none; background-image:url('img/txt_pass.png'); background-size: 100% 100%;" placeholder="Password"/>
+
+                    <a data-role="button" id="appwallloginbtn" onclick="javascript:ElementappwallLoginFun();" style="text-shadow:none;">LOGIN</a>
+
+                    <img src="img/register.png" width="100%"/>
+
+
+                     <a data-role="button" id="appwallregisterbtn" onclick="javascript:appwallRegFun(2);" style="text-shadow:none;">REGISTER</a>
+                           
+                </div>
+            </div>
+
+            <div data-role="popup" id="ElementappwallRegisterPage" class="ui-corner-all" style="background-color:#969696; background-size: 100% 100%;">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                
+                <div data-role="header" data-theme="e" style="text-align:center; white-space:normal; word-wrap:nowrap;">
+                     <h3><font size="2" class="Elementappwalllogtitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+                </div>
+                <div data-role="content">
+                    <h3 align="center" style="color:white">REGISTER</h3>
+
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" align="left" style="width:45%; margin-right:5%;">
+                            <input type = "text" id="appwallRegFnam1" style="text-shadow:none;" placeholder="First Name" />
+                        </div> 
+                        <div class="ui-block-b" align="right" style="width:45%; margin-left:5%;">
+                             <input type = "text" id="appwallRegLnam1" style="text-shadow:none;" placeholder="Last Name" />
+                        </div> 
+                    </div>    
+                                    
+                        <input type = "text"  id="appwallRegid1" style="text-shadow:none; background-image:url('img/txt_user.png'); background-size: 100% 100%;" placeholder="Login Id" />
+                                    
+                        <input type = "password"  id="appwallRegPassword1" style="text-shadow:none; background-image:url('img/txt_pass.png'); background-size: 100% 100%;" placeholder="Password"/>
+
+                        <input type = "number" id="appwallRegPhone1" style="text-shadow:none; background-image:url('img/txt_phone.png'); background-size: 100% 100%;" placeholder="Phone"/>
+
+                        <input type = "email"  id="appwallRegEmail1" style="text-shadow:none; background-image:url('img/txt_mail.png'); background-size: 100% 100%;" placeholder="Email"/>
+
+                        <a data-role="button" id="appwallregbtn1" onclick="javascript:regesiterPageFtn(2);" style="text-shadow:none;">REGISTER</a>
+                </div>
+                
+            </div>
+
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+                <h3>Content Appwall</h3>
+            </div>
+        </div>
+
+        <div data-role="page" id="ButtonAppwall" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+              <a href="javascript:buttonAppwallBack();"  class="ui-btn-left"  style="top:5%;background:none;border:none;shadow:none"><img src="img/back.png" class="imageactive"></a>
+              <h3><font size="2" id="ButtonAppwallTitle" style="top:5%; white-space:normal; word-wrap:break-word;"></font></h3>
+            </div>
+            
+            <div data-role="content">
+                <div class="ui-grid-a" style="width:100%;">
+                    <div class="ui-block-a" style="width:75%;">
+                        <input id="Buttonpostmessage" type="text" data-mini="true" data-inline="true" placeholder="Enter Your Comments...." value="" >
+                    </div>
+                    <div class="ui-block-b" style="width:25%;">
+                        <button id="ButtontextPostMgs" class="textPostMgs" onclick="javascript:ButtonpostmessageFun();" data-mini="true" data-inline="true"><font color="white" >Post</font></button>
+                   </div>
+                </div>
+                <div id="ButtonappwallListview" align="center">
+                </div>
+            </div>    
+
+            <div data-role="popup" id="ButtonappwallLoginPage" class="ui-corner-all" style="background-image: url('img/loginbg.png');background-size: 100% 100%;">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"  style="">Close</a>
+                <div style="padding:16px 20px;">
+                    <h3 style="text-align:center">My App Builder</h3>
+                    <div style="padding:18px 20px;">
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a">
+                                <a data-role="button" id="appwallFbLogin" onclick="javascript:ButtonappwallLoginFun();" style="text-shadow:none;">Facebook</a>
+                            </div>
+                            <div class="ui-block-b">
+                                <a data-role="button" id="appwallTwLogin" onclick="javascript:ButtonappwallLoginFun();" style="text-shadow:none;">Twitter</a>
+                            </div>
+                        </div>
+                        <div class="ui-grid-a" style="width:100%; " >
+                            <div class="ui-block-a" style="width:20%;">
+                                <img src="img/user.png" >
+                            </div>
+                            <div class="ui-block-b" style="width:80%; ">
+                                <input type = "text" name = "login" id="ButtonappwallLogin" style="text-shadow:none;" placeholder="Login Id"/>
+                            </div>
+                        </div>
+                        <div class="ui-grid-a" style="width:100%; ">
+                            <div class="ui-block-a" style="width:20%;">
+                                <img src="img/pass.png" >
+                            </div>
+                            <div class="ui-block-b" style="width:80%; ">
+                                <input type = "password" name = "password" id="ButtonappwallPassword" style="text-shadow:none;" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="ui-grid-a" style="width:100%; ">
+                            <div class="ui-block-a" style="width:50%; ">
+                            </div>
+                            <div class="ui-block-b" style="width:50%; ">
+                                <a data-role="button" id="appwallloginbtn" onclick="javascript:ButtonappwallLoginFun();" style="text-shadow:none;">login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+                <h3>Title Appwall</h3>
+            </div>
+        </div>
+
+
+        <!-- BookMark Details -->
+
+        <div data-role="page" id="BookMarkPage" style="background-image: url('img/bg2.png');background-size: 100% 100%; margin-top: 0px; ">
+            <div data-role="header" data-tap-toggle="false" data-theme="a" style="border:none;" data-position="fixed">
+               <a href="javascript:BookMarkPageback();" class="ui-btn-left" style="top:10%; background:none; border:none"><img src="img/menu.png" class="imageactive" ></a>
+               <h4><font size="2" class="BookMarkTitle" style="top:2%; white-space:normal; word-wrap:break-word;"></font></h4>
+            </div>
+            <div data-role="content">
+                <div class="backgroundcolor" style="width:100%">
+                    <ul data-role="listview" id="BookMarkListview" data-theme="b" data-inset="true">
+                    </ul>
+                </div>
+            </div>
+            <div data-role="footer" data-tap-toggle="false" data-theme="b" style="border:none;" data-position="fixed">
+               <h3><font size="2" class="BookMarkTitle" style="top:2%; white-space:normal; word-wrap:break-word;"></font></h3>
+            </div>
+        </div>
+
+        
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/brightness.js"></script>
+        <script type="text/javascript" src="js/cdv-plugin-fb-connect.js"></script>
+        <script type="text/javascript" src="js/facebook-js-sdk.js"></script>
+        <script type="text/javascript" src="js/init.js"></script>
+        <script type="text/javascript" src="js/childbrowser.js"></script>
+        <script type="text/javascript" src="js/jsOAuth-1.3.6.js"></script>
+
+    </body>
+</html>
